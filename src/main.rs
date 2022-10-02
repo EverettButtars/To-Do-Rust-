@@ -22,17 +22,22 @@ impl Task {
 
 #[derive(Debug, Clone)]
 enum CounterMessage {
+
     ClearTasks,
     AddText,
     BoxChecked(bool),
     TextInputChanged(String)
+
 }
 
 struct Counter {
+
     tasksRemaining: i32,
     list: Vec<Task>,
     textInputString: String
+
 }
+
 
 pub fn main() -> iced::Result {
     Counter::run(Settings::default())
@@ -76,8 +81,11 @@ impl Sandbox for Counter {
         let titleLabel = Text::new("To Do List").size(40);
 
         let tasksRemainLabel = Text::new(format!("Tasks Remaining: {}", self.tasksRemaining));
+
         let addTask = Button::new("Add Task").on_press(CounterMessage::AddText);
+
         let clear = Button::new("Clear finished Tasks").on_press(CounterMessage::ClearTasks);
+        
         let taskInput = TextInput::new("Add Tasks Here!", &self.textInputString, CounterMessage::TextInputChanged);
         
         let textRow = Row::new().push(taskInput).push(addTask); 
